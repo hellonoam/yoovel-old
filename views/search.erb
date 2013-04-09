@@ -1,0 +1,11 @@
+<div>
+  <div class="searchWrapper">
+    <input type="search" class="search" placeholder="Search for contacts or places..."/>
+  </div>
+  <ul class="list searchResults">
+  </ul>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(Search.init("<%= params[:q] %>"));
+</script>

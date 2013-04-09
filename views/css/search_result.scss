@@ -1,0 +1,75 @@
+/* removing the underline from the action images in person result */
+.person .title .action a { text-decoration: none; }
+
+.result {
+  color: #5a5a5a;
+  font-size: 13px;
+  a {
+    color: #5a5a5a;
+  }
+  .title {
+    min-height: 60px;
+    img {
+      height: 60px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .action {
+      margin-top: 5px;
+      img{
+        float: none;
+        border: 0px;
+        height: 20px;
+      }
+    }
+    .name {
+      line-height: 33px;
+      font-weight: 200;
+      font-size: 19px;
+    }
+    a {
+      text-decoration: underline;
+      margin-right: 10px;
+      font-size: 15px;
+    }
+    .info {
+      padding-left: 72px;
+    }
+    .unavailable {
+      background: url(/images/unavailable_26x26.png) no-repeat;
+      padding-left: 30px;
+      padding-bottom: 10px;
+    }
+    .available {
+      background: url(/images/available_26x26.png) no-repeat;
+      padding-left: 30px;
+      padding-bottom: 10px;
+    }
+  }
+
+  li {
+    padding-right: 20px;
+    .appImageWrapper {
+      position: relative;
+      img { position: absolute; }
+    }
+    .info {
+      padding-left: 46px;
+      /* right now this is just for instagram images, but maybe use it in the future for others */
+      div > img {
+        float: none;
+        border: 1px solid #ccc;
+        margin-top: 3px;
+      }
+      .first {
+        font-weight: bold;
+      }
+    }
+    img {
+      float: left;
+      height: 36px;
+      margin-right: 10px;
+      border-radius: 6px;
+    }
+  }
+}

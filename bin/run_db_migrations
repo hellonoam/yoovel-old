@@ -1,0 +1,9 @@
+#! /usr/bin/env ruby
+
+TOP_DIR = File.dirname(File.expand_path(File.dirname(__FILE__)))
+
+require File.join(TOP_DIR, "lib/db")
+
+Sequel.extension(:migration)
+
+Sequel::Migrator.apply(DB, File.join(TOP_DIR, "db/migrations"))

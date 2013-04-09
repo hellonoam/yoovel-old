@@ -1,0 +1,15 @@
+<script>
+  $(document).ready(Result.init);
+</script>
+<% apps.each do |app_hash| %>
+<a class="track" data-track-name="app <%= app_hash[:name] %>" href="<%= [app_hash[:link]].flatten[0] %>"
+ <%= [app_hash[:link]].flatten[0] =~ /^http/ ? "target='_blank'" : "" %>>
+  <li class="<%= app_hash[:name] %>">
+    <div class="appImageWrapper"><img src="/images/<%= app_hash[:icon] %>"></div>
+    <div class="info">
+      <div class="first"><%= app_hash[:title] %></div>
+      <div class="second"><%= app_hash[:sub_title] %></div>
+    </div>
+  </li>
+</a>
+<% end %>

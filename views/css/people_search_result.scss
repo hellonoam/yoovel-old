@@ -1,0 +1,83 @@
+.slider {
+  background-image: url("/images/chruch.png");
+  ul {
+    margin-left: 0px;
+  }
+  div {
+/*    width: 180px;*/
+/*    margin: 0px auto;*/
+  }
+  img {
+    height: 200px;
+  }
+}
+
+.personInfo {
+/*  border: 1px solid #ccc;*/
+/*  border-radius: 3px;*/
+  margin: 8px 0px;
+  img {
+    height: 30px;
+    margin-right: 4px;
+    margin-left: 4px;
+  }
+  img[src*='sms'] {
+    height: 25px;
+  }
+  img[src*='phone'] {
+    margin-right: 0px;
+  }
+  .lead {
+    margin-left: 10px;
+    float: left;
+    margin-right: 10px;
+  }
+}
+
+.integrations {
+  .tab-content {
+    font-weight: 300;
+    color: #5a5a5a;
+    li {
+      margin-bottom: 10px;
+      a {
+        vertical-align: top;
+        color: #5a5a5a;
+        font-weight: 300;
+      }
+    }
+  }
+
+  ul {
+    padding-left: 10px;
+  }
+
+  #info p {
+    margin-left: 5px;
+  }
+
+  #facebook ul {
+    list-style-image:url(/images/facebook-24x24.png);
+  }
+  #twitter ul {
+    list-style-image:url(/images/twitter-24x24.png);
+  }
+  #instagram .no-image {
+    list-style-image:none;
+    list-style-type:none;
+    padding: 0px;
+    margin-left: -20px;
+  }
+  #instagram ul {
+    list-style-image:url(/images/instagram-24x24.png);
+    li img {
+      height: 50px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      vertical-align: middle;
+    }
+  }
+  .tab-pane {
+    margin-left: 40px;
+  }
+}

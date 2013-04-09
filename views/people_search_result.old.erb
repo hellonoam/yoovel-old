@@ -1,0 +1,131 @@
+<script>
+  $(document).ready(People.init);
+</script>
+<div class="slider">
+  <ul>
+    <li>
+      <div><img src="<%= person.profile_pic %>"></div>
+    </li>
+    <% if person.instagram_authenticated %>
+      <% [person.instagram_thumbnails.length, 8].min.times do |i| %>
+        <li>
+          <div><img src="<%= person.instagram_thumbnails[i] %>"></div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+<div class="personInfo">
+  <div class="lead"><%= person.name %></div>
+  <div class="actionLinks">
+    <a href="tel:<%= person.phone_number %>">
+      <img src="images/phone.png">
+    </a>
+    <a href="sms:<%= person.phone_number %>">
+      <img src="images/sms.png">
+    </a>
+    <a href="mailto:<%= person.email.join(",") %>">
+      <img src="images/email.png">
+    </a>
+  </div>
+</div><!-- /personInfo -->
+<div class="integrations">
+  <div class="tabbable"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
+      <li><a href="#facebook" data-toggle="tab">Facebook</a></li>
+      <li><a href="#twitter" data-toggle="tab">Twitter</a></li>
+      <li><a href="#instagram" data-toggle="tab">Instagram</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="info">
+        <% if person.work.length > 0 %>
+        <div>
+           <h4>Employers</h4>
+           <% person.work.each do |w| %>
+           <p><%= "<i>#{w[:name]}</i> #{w[:location]}" %></p>
+           <% end %>
+        </div>
+        <% end %>
+        <% if person.education.length > 1 %>
+        <div>
+           <h4>Education</h4>
+           <% person.education.each do |edu| %>
+           <p>
+             <%= "<i>#{edu[:name]}</i> #{edu[:year]} #{edu[:degree]} #{edu[:type]} #{edu[:concentration]}" %>
+           </p>
+           <% end %>
+        </div>
+       <% end %>
+        <div>
+           <h4>Basic Info</h4>
+           <p><%= basic_info(person) %></p>
+         </div>
+      </div>
+      <div class="tab-pane" id="facebook">
+       <ul>
+       <% if person.statuses.empty? %>
+          <li>
+            <a href="fb://profile/<%= person.facebook_id %>">
+                No updates here...<%= " click to see the profile" if person.facebook_id %>
+            </a>
+          </li>
+       <% end %>
+       <% person.statuses.each do |update| %>
+         <li>
+           <a href="fb://profile/<%= person.facebook_id %>">
+             <%= update %>
+           </a>
+         </li>
+       <%end%>
+       </ul>
+      </div>
+      <div class="tab-pane" id="twitter">
+        <ul>
+        <% if person.twitter_username %>
+          <% 5.times do |index| %>
+          <% next if person.get_tweet(index).to_s.empty? %>
+          <li>
+            <a href="twitter://user?screen_name=<%= person.twitter_username %>">
+              <%= person.get_tweet(index) %>
+            </a>
+          </li>
+          <% end %>
+        <% else %>
+          <li>
+            <a href="#">
+              Sorry we couldn't find <%= person.name %> on Twitter :(
+            </a>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+      <div class="tab-pane" id="instagram">
+        <% if person.instagram_authenticated %>
+          <% if person.instagram_thumbnails.size > 0 %>
+            <ul class="no-image"><li><a href="instagram://user?username=<%= person.instagram_username %>">
+            <% [person.instagram_thumbnails.length, 10].min.times do |i| %>
+              <img src="<%= person.instagram_thumbnails[i] %>">
+            <% end %>
+            </a></li></ul>
+          <% else %>
+            <ul><li>
+              <a href="instagram://app">
+                Sorry we couldn't find any Instagrams for <%= person.name %>
+              </a>
+            </li></ul>
+          <% end %>
+        <% else %>
+          <ul>
+            <li>
+              <a href="https://api.instagram.com/oauth/authorize/?client_id=<%= INSTAGRAM_CLIENT_ID %>&redirect_uri=<%= "http://#{APP_URL + INSTAGRAM_AUTH_PATH}?#{request.query_string}"%>&response_type=code">
+                Login for Instagram Photos
+              </a>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /integrations -->

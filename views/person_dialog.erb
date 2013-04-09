@@ -1,0 +1,38 @@
+<div data-role="page" data-title="Yoovel">
+
+  <div data-role="header" data-theme="b">
+    <h1><%= person.name %></h1>
+  </div>
+  
+  <div data-role="content" data-theme ="b">
+    <div data-role="collapsible" data-collapsed="false" data-theme="c">
+       <h3>Employers</h3>
+       <%     person.work.each do |w| %>
+         <p><strong><%= w["name"] %></strong> <%= w["location"] %></p>
+       <% end %>
+    </div>
+    <div data-role="collapsible" data-collapsed="false" data-theme="c">
+       <h3>Education</h3>
+       <% person.education.each do |edu| %>
+         <p>
+           <strong><%= edu["name"] %></strong>
+           <%= "#{edu["year"]} #{edu["degree"]} #{edu["type"]} #{edu["concentration"]}" %>
+         </p>
+       <% end %>    </div>
+    <div data-role="collapsible" data-collapsed="false" data-theme="c">
+       <h3>Basic Info</h3>
+       <% if person.birthday %>
+         <p><strong>Birthday-</strong> <% person.birthday %></p>
+       <% end %>
+       <% if person.sex %>
+       <p><strong>Sex -</strong> <%= person.sex %></p>
+       <% end %>
+       <% if person.mutual_friend_count %>
+       <p><strong>Mutual Friends -</strong> <%= person.mutual_friend_count %></p>
+       <% end %>
+       <% if person.relationship_status %>
+       <p><strong>Relationship status -</strong> <%= person.relationship_status %></p>
+       <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+Google has authorized<br/>
+
+User info:
+<hr/>
+<%  user_data = google_auth.get_user_info 
+    picture_url = user_data["picture"]
+%>
+Name: <%= "#{user_data['given_name']} #{user_data['family_name']}" %><br/>
+Email: <%= user_data['email'] %><br/>
+<img src="<%= picture_url %>">

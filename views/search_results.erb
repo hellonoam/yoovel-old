@@ -1,0 +1,66 @@
+<script>
+  mixpanel.track("search result loaded", { "discovery_mode" : "<%= discovery_mode %>" , "query" : "<%= query %>" });
+  <% if places_results.size >= 1 %>
+    var $restaurantSettings = $("#restaurant_settings");
+    $restaurantSettings.show();
+    $restaurantSettings.click(toggleVisibility);
+    selectChanged();
+  <% end %>
+
+  function selectChanged() {
+    var $peopleCount = $("#people_count");
+    var $partySize = $("#party_size").val().replace("_", " ");
+    $peopleCount.html($partySize);
+    for (var i = 0; i < document.links.length; i++) {
+      document.links[i].href = document.links[i].href.replace(/party=\d*/, "party=" + $partySize.split(" ")[0]);
+    }
+    $("#party_popover").hide();
+  }
+
+  function toggleVisibility() {
+    if($("#party_popover").is(":visible"))
+    {
+      $("#party_popover").hide();
+    }
+    else
+    {
+      $("#party_popover").show();
+    }
+  }
+</script>
+<% if places_results.size > 1 %>
+<div id="party_popover" class="popover">
+  <header class="popover-header">
+    <h3 class="title">Party Size</h3>
+  </header>
+  <select id="party_size" onchange="selectChanged()">
+    <% for i in 1..20 %>
+      <% people = i > 1 ? " people" : " person" %>
+      <option class="party_option" value="<%= "#{i}_people"%>" <%= "selected='selected'" if i == 2 %>><%= i.to_s + people %></option>
+    <% end %>
+  </select>
+</div>
+<% end %>
+<% people_results.each do |name, json_object| %>
+<li class="contact">
+  <a data-transition="slide-in" href="/person?name=<%= URI::encode name %>&google=<%=
+      URI::encode json_object["google"].to_json %>&facebook=<%=
+      URI::encode json_object["facebook"].to_json %>">
+    <span class="name"><%= name %></span>
+    <span class="chevron"></span>
+  </a>
+</li>
+<% end %>
+<% places_results.each do |name, all_venues_with_name| %>
+  <% all_venues_with_name.each do |venue_hash| %>
+  <li class="place">
+    <a data-transtion="slide-in" href="/place?lat=<%=lat %>&long=<%= long %>&party=2&<%= venue_hash["details_query_string"]%>">
+
+      <span class="name"><%= name %></span>
+      <p><span class="name"><%= venue_hash["address"] || venue_hash["location"]["display_address"].first %></span></p>
+      <p><span class="name">yelp: <%= venue_hash["yelp_rating"] %>, foursquare: <%= venue_hash["foursquare_rating"]%></span></p>
+      <span class="chevron"></span>
+    </a>
+  </li>
+  <% end %>
+<% end %>

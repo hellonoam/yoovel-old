@@ -1,0 +1,24 @@
+<script>
+  mixpanel.track("people loaded");
+</script>
+<ul class="list result person">
+  <li class="title">
+    <img src="<%= person.profile_pic %>">
+    <div class="info">
+      <div class="name"><%= person.name %></div>
+      <div class="description"><%= person.description %></div>
+      <div class="action">
+        <a class="track" data-track-name="people tel" href="tel:<%= person.phone_number %>">
+          <img src="images/phone.png">
+        </a>
+        <a class="track" data-track-name="people sms" href="sms:<%= person.phone_number %>">
+          <img src="images/sms.png">
+        </a>
+        <a class="track" data-track-name="people email" href="mailto:<%= person.email.join(",") %>">
+          <img src="images/email.png">
+        </a>
+        </div>
+    </div>
+  </li>
+  <%= erb :apps, :locals => { :apps => person.apps }%>
+</ul>

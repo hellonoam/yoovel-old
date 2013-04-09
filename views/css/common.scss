@@ -1,0 +1,78 @@
+body {
+  .bar-title {
+    color: white;
+  }
+  .bar-title {
+    h5 {
+      z-index: 10;
+      position: absolute;
+      font-size: 10px;
+    }
+    h5.right {
+      right: 5px;
+    }
+    h1 {
+      z-index: 0;
+    }
+  }
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#party_size{
+  -webkit-appearance:menulist;
+}
+
+.popover {
+  top: 25px;
+  opacity: 100;
+}
+
+#restaurant_settings {
+  position: absolute;
+  z-index: 20;
+  margin-left: 75%;
+  display: none;
+  margin-top: 5px;
+}
+
+.party_option {
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+
+.lead {
+  font-weight: 200;
+  line-height: 27px;
+  font-size: 20px;
+  color: #5a5a5a;
+}
+
+.list .contact {
+  background-image: url('/images/user_23x22.png');
+  background-position: 8px center;
+  background-repeat: no-repeat;
+  padding-left: 25px;
+}
+
+.list .place {
+  background-image: url('/images/location_16x24.png');
+  background-position: 12px center;
+  background-repeat: no-repeat;
+  padding-left: 25px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.searchWrapper {
+  margin: 20px  5px 0 5px;
+  input[type='search'] {
+    padding: 0px;
+  }
+}
+
+header a {
+  color: white;
+}

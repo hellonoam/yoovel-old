@@ -1,0 +1,13 @@
+<script>
+  mixpanel.track("generic loaded");
+</script>
+<ul class="list result generic">
+  <li class="title">
+    <img src="<%= item.image %>">
+    <div class="info">
+      <div class="name"><%= item.name %></div>
+      <div class="description"><%= item.description %></div>
+    </div>
+  </li>
+  <%= erb :apps, :locals => { :apps => item.apps }%>
+</ul>

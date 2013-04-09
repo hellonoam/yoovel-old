@@ -1,0 +1,26 @@
+<script>
+  mixpanel.track("place loaded");
+</script>
+<ul class="list result place">
+  <li class="title">
+    <img src="<%= place.image %>">
+    <div class="info">
+      <div class="name">
+        <% if place.available.nil? %>
+          <span class="avail_unknown">
+        <% elsif place.available %>
+          <span class="available">
+        <% else %>
+          <span class="unavailable">
+        <% end %>
+        <%= place.name %></span></div>
+      <div class="description"><%= place.categories.join(", ")%></div>
+      <div class="action">
+        <a class="track" data-track-name="place tel" href="tel:<%= place.phone_number %>">call</a>
+        <a class="track" data-track-name="place website" href="<%= place.website %>">website</a>
+        <a class="track" data-track-name="place menu" href="<%= place.menu %>">menu</a>
+        </div>
+    </div>
+  </li>
+  <%= erb :apps, :locals => { :apps => place.apps }%>
+</ul>

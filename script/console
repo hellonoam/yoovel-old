@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require "irb"
+require File.join(Dir.pwd, "lib", "db")
+require File.join(Dir.pwd, "lib", "google", "all")
+require File.join(Dir.pwd, "lib", "dist_calc")
+require File.join(Dir.pwd, "models", "all")
+
+IRB.start

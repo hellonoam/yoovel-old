@@ -1,0 +1,9 @@
+- call sms email menu website links all work 50% of the time
+
+- tests for different integrations
+
+- reconsider showing facebook images for people who aren't in your contact list
+
+- add a spinner after clicking on a person
+- disable links that don't have the right info like phone/sms....
+- cookies instead of session
