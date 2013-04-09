@@ -1,2 +1,2 @@
 #!/bin/bash
-bundle exec thin start -p 8080 -R config.ru
+bundle exec thin start -p 8085 -R config.ru

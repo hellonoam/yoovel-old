@@ -58,7 +58,8 @@ class YoovelApp < Sinatra::Base
     Resque.redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
     use Rack::CommonLogger
     use Rack::Deflater
-    use HostChanger
+    # don't use host changer for now.
+    # use HostChanger
   end
 
   configure :development, :test do
@@ -274,7 +275,7 @@ class YoovelApp < Sinatra::Base
                  :google_places    => [GooglePlaces, name, rest_lat, rest_long],
                  :yelp             => [YelpSearch, yelp_query, rest_lat, rest_long, 1, valid_yelp_id],
                  :lyft             => [LyftSearch, lat, long],
-                 :sidecar          => [SidecarSearch, lat, long],
+                 :sidecar          => [SidecarSearch, lat, long, rest_lat, rest_long],
                  :uber             => [UberSearch, lat, long],
                  :public_transport => [GoogleDirections, fs_search.full_address, [lat, long]],
                  :distance_driving => [GoogleDistance, fs_search.full_address, [lat, long], "driving"],

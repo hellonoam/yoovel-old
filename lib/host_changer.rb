@@ -7,8 +7,7 @@ class HostChanger
   def call(env)
     if env["SERVER_NAME"].include?("herokuapp.com")
       url = Rack::Request.new(env).url
-      url.gsub!("yoovel.herokuapp.com", "data.getcorral.com")
-      url.gsub!("yoovel-staging.herokuapp.com", "staging-data.getcorral.com")
+      # url.gsub!("yoovel.herokuapp.com", "data.getcorral.com")
       [301, { "Location" => url }, []]
     else
       @app.call(env)
