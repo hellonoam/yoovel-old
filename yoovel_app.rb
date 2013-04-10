@@ -274,15 +274,15 @@ class YoovelApp < Sinatra::Base
     searches = { :opentable        => [OpentableSearch, fs_search.opentable_id, party_size],
                  :taximojo         => [TaximojoSearch, lat, long],
                  :google_places    => [GooglePlaces, name, rest_lat, rest_long],
-                 # :yelp             => [YelpSearch, yelp_query, rest_lat, rest_long, 1, valid_yelp_id],
-                 # :lyft             => [LyftSearch, lat, long],
-                 # :sidecar          => [SidecarSearch, lat, long, rest_lat, rest_long],
-                 # :uber             => [UberSearch, lat, long],
-                 # :public_transport => [GoogleDirections, fs_search.full_address, [lat, long]],
-                 # :distance_driving => [GoogleDistance, fs_search.full_address, [lat, long], "driving"],
-                 # :distance_walking => [GoogleDistance, fs_search.full_address, [lat, long], "walking"],
-                 # :distance_cycling => [GoogleDistance, fs_search.full_address, [lat, long], "bicycling"],
-                 :instagram        => [InstagramVenueSearch, fs_search.id]
+                 :yelp             => [YelpSearch, yelp_query, rest_lat, rest_long, 1, valid_yelp_id],
+                 :lyft             => [LyftSearch, lat, long],
+                 :sidecar          => [SidecarSearch, lat, long, rest_lat, rest_long],
+                 :uber             => [UberSearch, lat, long],
+                 :public_transport => [GoogleDirections, fs_search.full_address, [lat, long]],
+                 :distance_driving => [GoogleDistance, fs_search.full_address, [lat, long], "driving"],
+                 :distance_walking => [GoogleDistance, fs_search.full_address, [lat, long], "walking"],
+                 :distance_cycling => [GoogleDistance, fs_search.full_address, [lat, long], "bicycling"]
+                 # :instagram        => [InstagramVenueSearch, fs_search.id]
                }
 
     EM::Synchrony::FiberIterator.new(searches, searches.length).each do |name, klass_and_args|
