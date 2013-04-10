@@ -281,8 +281,8 @@ class YoovelApp < Sinatra::Base
                  :public_transport => [GoogleDirections, fs_search.full_address, [lat, long]],
                  :distance_driving => [GoogleDistance, fs_search.full_address, [lat, long], "driving"],
                  :distance_walking => [GoogleDistance, fs_search.full_address, [lat, long], "walking"],
-                 :distance_cycling => [GoogleDistance, fs_search.full_address, [lat, long], "bicycling"]
-                 # :instagram        => [InstagramVenueSearch, fs_search.id]
+                 :distance_cycling => [GoogleDistance, fs_search.full_address, [lat, long], "bicycling"],
+                 :instagram        => [InstagramVenueSearch, fs_search.id]
                }
 
     EM::Synchrony::FiberIterator.new(searches, searches.length).each do |name, klass_and_args|
