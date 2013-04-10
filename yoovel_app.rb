@@ -214,12 +214,13 @@ class YoovelApp < Sinatra::Base
     searches = {
                  # :lyft    => [LyftSearch, lat, long],
                  :instantcab => [InstantcabSearch, lat, long],
-                 :sidecar    => [SidecarSearch, lat, long, dest_lat, dest_long],
                  :uber       => [UberSearch, lat, long]
                }
 
+    # searches that require a destination.
     if dest_exists
       searches.merge!({
+        :sidecar          => [SidecarSearch, lat, long, dest_lat, dest_long],
         :public_transport => [GoogleDirections, [dest_lat, dest_long], [lat, long]],
         :distance_driving => [GoogleDistance, [dest_lat, dest_long], [lat, long], "driving"],
         :distance_walking => [GoogleDistance, [dest_lat, dest_long], [lat, long], "walking"],
@@ -273,14 +274,14 @@ class YoovelApp < Sinatra::Base
     searches = { :opentable        => [OpentableSearch, fs_search.opentable_id, party_size],
                  :taximojo         => [TaximojoSearch, lat, long],
                  :google_places    => [GooglePlaces, name, rest_lat, rest_long],
-                 :yelp             => [YelpSearch, yelp_query, rest_lat, rest_long, 1, valid_yelp_id],
-                 :lyft             => [LyftSearch, lat, long],
-                 :sidecar          => [SidecarSearch, lat, long, rest_lat, rest_long],
-                 :uber             => [UberSearch, lat, long],
-                 :public_transport => [GoogleDirections, fs_search.full_address, [lat, long]],
-                 :distance_driving => [GoogleDistance, fs_search.full_address, [lat, long], "driving"],
-                 :distance_walking => [GoogleDistance, fs_search.full_address, [lat, long], "walking"],
-                 :distance_cycling => [GoogleDistance, fs_search.full_address, [lat, long], "bicycling"],
+                 # :yelp             => [YelpSearch, yelp_query, rest_lat, rest_long, 1, valid_yelp_id],
+                 # :lyft             => [LyftSearch, lat, long],
+                 # :sidecar          => [SidecarSearch, lat, long, rest_lat, rest_long],
+                 # :uber             => [UberSearch, lat, long],
+                 # :public_transport => [GoogleDirections, fs_search.full_address, [lat, long]],
+                 # :distance_driving => [GoogleDistance, fs_search.full_address, [lat, long], "driving"],
+                 # :distance_walking => [GoogleDistance, fs_search.full_address, [lat, long], "walking"],
+                 # :distance_cycling => [GoogleDistance, fs_search.full_address, [lat, long], "bicycling"],
                  :instagram        => [InstagramVenueSearch, fs_search.id]
                }
 
