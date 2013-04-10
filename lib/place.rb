@@ -24,7 +24,7 @@ class Place
     @menu = foursquare.menu
     @phone_number = foursquare.phone_number || yelp.phone_number
     @website = foursquare.website
-    @images = instagram.images
+    @images = instagram.images if instagram
 
     address, cross_street = "#{foursquare.address} #{foursquare.address2}", foursquare.cross_street
 
@@ -86,7 +86,7 @@ class Place
                     "https://itunes.apple.com/us/app/yelp/id284910350"] }
     end
 
-    unless instagram.place_id.nil? && instagram.thumbnails.length > 0
+    if instagram && instagram.place_id && instagram.thumbnails.length > 0
       @apps << { :rank => 5, :icon => "instagram.jpg", :title => "instagram images", :name => "instagram",
           :sub_title => "click to see images on instagram, update the app to see a preview of the images",
           :thumbnails => instagram.thumbnails, :link => ["instagram://location?id=#{instagram.place_id}",
